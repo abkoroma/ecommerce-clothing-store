@@ -54,15 +54,9 @@ export async function addCollectionAndDocuments(collectionKey, objectsToAdd) {
 export async function getCategoriesAndDocuments() {
   const collectionRef = collection(db, 'categories');
   const q = query(collectionRef);
-  
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
 }
 
 export async function createUserDocumentFromAuth(userAuth, additionalInfo = {}) {
@@ -71,9 +65,6 @@ export async function createUserDocumentFromAuth(userAuth, additionalInfo = {}) 
   const userDocRef = doc(db, 'users', userAuth.uid);
   const userSnapShot = await getDoc(userDocRef);
 
-    //check if user data exist, if true, return userDocRef
-    //if user data does not exist
-    //create / set the document with the data from userAuth in my collection
   if(!userSnapShot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -85,7 +76,7 @@ export async function createUserDocumentFromAuth(userAuth, additionalInfo = {}) 
       console.log("Error creating user", err.message);
     }
   }
-  return userDocRef;
+  return userSnapShot;
 };
 
 export async function createAuthUserWithEmailAndPassword(email, password) {
@@ -106,4 +97,13 @@ export async function signOutUser() {
 
 export function onAuthStateChangedListener(callback) {
   return onAuthStateChanged(auth, callback);
+}
+
+export function getCurrentUser() {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
 }
