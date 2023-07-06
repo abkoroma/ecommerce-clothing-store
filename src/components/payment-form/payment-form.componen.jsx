@@ -29,7 +29,7 @@ export default function PaymentForm() {
             },
             body: JSON.stringify({ amount: amount * 100 })
         }).then((res) => { 
-            return res.json()
+            return res.json();
         });
         
         const clientSecret = response.paymentIntent.client_secret;

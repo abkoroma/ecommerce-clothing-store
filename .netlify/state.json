@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Gaithersburg",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "MD",
+				"name": "Maryland"
+			},
+			"timezone": "America/New_York",
+			"latitude": 39.1407,
+			"longitude": -77.1917
+		},
+		"timestamp": 1688664986501
+	}
+}
