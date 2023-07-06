@@ -22,7 +22,7 @@ export default function Navigation() {
     return (
         <Fragment>
             <NavigationContainer>
-               <LogoContainer to="/nav">
+               <LogoContainer to="/">
                     <CrownLogo className="logo" />
                </LogoContainer>
                 <NavLinks>
