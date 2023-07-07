@@ -18,3 +18,4 @@ export const Preview = styled.div`
     grid-template-columns: repeat(4, 1fr);
     column-gap: 20px;
 `;
+

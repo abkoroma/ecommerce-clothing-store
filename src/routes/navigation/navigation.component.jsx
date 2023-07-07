@@ -43,7 +43,7 @@ export default function Navigation() {
                     <CartIcon />
                 </NavLinks>
                 {isCartOpen && <CartDropdown />}
-                </NavigationContainer>
+            </NavigationContainer>
             <Outlet />
         </Fragment>
     );
