@@ -16,3 +16,4 @@ Technologies and Tools
 - SCSS, CSS, Styled components
 -Firebase
 -Testing with Jest and Snapshot testing
+Some components are programmed both in typescript and javascript
